@@ -8,6 +8,7 @@ namespace YouTubeConverter
         static void Main(string[] args)
         {
             GetInfo();
+
         }
 
         public static async void  GetInfo()
@@ -18,7 +19,7 @@ namespace YouTubeConverter
             var author = video.Author; 
             var duration = video.Duration;
 
-            string text = $"{title} {author} {duration}";
+            string text = $"Заголовок {title} Автор {author} Время {duration}";
             Console.WriteLine(text);
         }
     }
