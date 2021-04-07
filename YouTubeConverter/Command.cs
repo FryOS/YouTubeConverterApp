@@ -8,7 +8,7 @@ namespace YouTubeConverter
 {
     abstract class Command
     {
-        public abstract void GetInfo();
+        public abstract Task<string> GetInfo();
         public abstract void Download();
     }
 }

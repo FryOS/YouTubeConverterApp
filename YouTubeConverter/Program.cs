@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using YoutubeExplode;
 
 namespace YouTubeConverter
@@ -7,10 +8,11 @@ namespace YouTubeConverter
     {
         static void Main(string[] args)
         {
-            GetInfoAsync();
+            var value = GetInfoAsync().GetAwaiter().GetResult();
+            Console.WriteLine(value);
         }
 
-        public static async void  GetInfoAsync()
+        public static async Task<string>  GetInfoAsync()
         {
             var youtube = new YoutubeClient();
             var video = await  youtube.Videos.GetAsync("https://youtu.be/ErdJeQTpNbg");
@@ -18,8 +20,8 @@ namespace YouTubeConverter
             var author = video.Author; 
             var duration = video.Duration;
 
-            string text = $"Заголовок {title} Автор {author} Время {duration}";
-            Console.WriteLine(text);
+            string text = $"Заголовок {title}\nАвтор {author}\nВремя {duration}";
+            return text;
         }
     }
 }

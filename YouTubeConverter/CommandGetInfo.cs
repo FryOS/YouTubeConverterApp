@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using YoutubeExplode;
 
 namespace YouTubeConverter
 {
@@ -16,10 +14,18 @@ namespace YouTubeConverter
         }
 
         // Выполнить
-        public override void GetInfo()
+        public override async Task<string> GetInfo()
         {
             Console.WriteLine("Команда отправлена получить информацию");
             receiver.Operation();
+            var youtube = new YoutubeClient();
+            var video = await youtube.Videos.GetAsync("https://youtu.be/ErdJeQTpNbg");
+            var title = video.Title;
+            var author = video.Author;
+            var duration = video.Duration;
+
+            string text = $"Заголовок {title}\nАвтор {author}\nВремя {duration}";
+            return text;
         }
 
         // Скачать
