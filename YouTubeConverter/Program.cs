@@ -8,20 +8,22 @@ namespace YouTubeConverter
     {
         static void Main(string[] args)
         {
-            var value = GetInfoAsync().GetAwaiter().GetResult();
-            Console.WriteLine(value);
-        }
+            // создадим отправителя
+            var sender = new Sender();
 
-        public static async Task<string>  GetInfoAsync()
-        {
-            var youtube = new YoutubeClient();
-            var video = await  youtube.Videos.GetAsync("https://youtu.be/ErdJeQTpNbg");
-            var title = video.Title; 
-            var author = video.Author; 
-            var duration = video.Duration;
+            // создадим получателя
+            var receiver = new Receiver();
 
-            string text = $"Заголовок {title}\nАвтор {author}\nВремя {duration}";
-            return text;
+            // создадим команду
+            var commandGetInfo = new CommandGetInfo(receiver);
+
+            // инициализация команды
+            sender.SetCommand(commandGetInfo);
+
+            //  выполнение
+            var res = sender.Run().GetAwaiter().GetResult();
+
+            Console.WriteLine(res);
         }
     }
 }
