@@ -10,6 +10,7 @@ namespace YouTubeConverter
     {
         public void Operation()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Процесс запущен");
         }
     }

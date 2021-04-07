@@ -15,15 +15,17 @@ namespace YouTubeConverter
             var receiver = new Receiver();
 
             // создадим команду
-            var commandGetInfo = new CommandGetInfo(receiver);
+            var command = new CommandGetInfoAndDownload(receiver);
 
             // инициализация команды
-            sender.SetCommand(commandGetInfo);
+            sender.SetCommand(command);
 
             //  выполнение
-            var res = sender.Run().GetAwaiter().GetResult();
+            var res = sender.GetInfo().GetAwaiter().GetResult();
 
             Console.WriteLine(res);
+
+            var res1 = sender.Download().GetAwaiter().GetResult();
         }
     }
 }

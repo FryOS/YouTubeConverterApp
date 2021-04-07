@@ -16,15 +16,15 @@ namespace YouTubeConverter
         }
 
         // Выполнить
-        public async Task<string> Run()
+        public async Task<string> GetInfo()
         {
            return await _command.GetInfo();
         }
 
         // Отменить
-        public void Download()
+        public async Task<int> Download()
         {
-            _command.Download();
+            return await _command.Download();
         }
     }
 }
